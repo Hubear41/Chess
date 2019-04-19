@@ -80,6 +80,9 @@ class Cursor
     @selected = !selected
   end
 
+  # for :return and :space we select a position
+  # for :left, :right, :up, :down we move the cursor
+  # ctrl_c exits
   def handle_key(key)
     case key
     when :return, :space
@@ -93,6 +96,8 @@ class Cursor
     end
   end
 
+  # updates the @cursor_pos with the direction moved
+  # raise error if the new_pos is outside for the board dimensions
   def update_pos(diff)
     new_pos = @cursor_pos
     new_pos[0] += diff[0]

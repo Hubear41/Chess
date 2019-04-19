@@ -8,7 +8,8 @@ class Piece
         @pos = pos
     end
 
-    def to_s
+    # print the utf-8 symbol for the piece
+    def to_s 
         self.symbol
     end
 
@@ -22,10 +23,14 @@ class Piece
         board[row][col] = value
     end
 
+    # checks if the pos is a NullPiece
+    # returns true if NullPiece
+    # returns false if another Piece subclass
     def empty?
        self[pos].is_a?(NullPiece)
     end
     
+    # if in check, we remove all moves that don't remove check
     def valid_moves
         valid = []
         all_moves = self.moves
@@ -55,7 +60,7 @@ class Piece
     end
 
     def symbol
-        return
+        raise "should define in subclass"
     end
 
     def dup
