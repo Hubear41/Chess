@@ -4,6 +4,7 @@ require_relative 'board.rb'
 
 class Display
     attr_reader :board
+    attr_accessor :cursor
 
     def initialize(board)
         @board = board
@@ -44,35 +45,14 @@ class Display
         puts "use arrow keys to move"
     end
 
-    def move_cursor
-        done = false    # temp boolean
-        
-        until done
-            begin
-                system("clear")
-                render(@cursor.cursor_pos) # show board with cursor pos
-                
-                @cursor.get_input
-
-            # if invalid position, print message and don't update cursor pos
-            rescue  
-                puts "Not in range"
-                sleep(1)
-                
-                retry
-            end
-        end
-    end
-
-    def find_val(pos)
-        # checks color first and then find the matching symbol
-        case board[pos].color 
-        when :white
-            board[pos].symbol.colorize(:white)
-
-            " "      
-        end
-    end
+    # def find_val(pos)
+    #     # checks color first and then find the matching symbol
+    #     case board[pos].color 
+    #     when :white
+    #         board[pos].symbol.colorize(:white)
+    #         " "      
+    #     end
+    # end
 
 end
 
