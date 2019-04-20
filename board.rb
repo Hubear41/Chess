@@ -12,15 +12,26 @@ class Board
 
     # will move piece at start_pos to end_pos if end_pos is empty
     # will raise error if start_pos is not a playable piece
-    # will raise error if end_pos is occupied
+    # will check if the end_pos is in it's valid position or if it would put the player in check
     def move_piece(start_pos, end_pos)
         curr_piece = self[start_pos]
 
         raise "There is no piece at the first position" if curr_piece.is_a? NullPiece
-        raise "Cannot move there" unless self[end_pos].is_a? NullPiece
-            
-        self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+        
+        valid_moves = curr_piece.valid_moves
+
+        if valid_moves.include(end_pos)
+            move_piece!(start_pos, end_pos)
+        elsif curr_piece.move_into_check?(end_pos)
+            raise "This move will cause you to be in check"
+        else
+            raise "can't move the piece to that position"
+        end
     end 
+
+    def move_piece!(start_pos, end_pos)
+        self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+    end
 
     def [](position)
         row, col = position

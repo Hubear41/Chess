@@ -26,15 +26,15 @@ class Display
             (0..7).each do |j|
                  # val = ' '
                 pos = [i,j]
-                val = find_val(pos)                
+                             
 
                 # if at cursor position, make it red
                 if [i, j] == cursor_pos && @cursor.selected == false
-                    print " [#{val}]".colorize(:red)
+                    print " [" + board[pos].symbol + "]".colorize(:red)
                 elsif [i, j] == cursor_pos && @cursor.selected == true
-                    print " [#{val}]".colorize(:yellow)
+                    print " [" + board[pos].symbol + "]".colorize(:yellow)
                 else
-                    print " [#{val}]"
+                    print " [" + board[pos].symbol + "]"
                 end
             end
 

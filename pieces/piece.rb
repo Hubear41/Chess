@@ -36,11 +36,7 @@ class Piece
         all_moves = self.moves
 
         all_moves.each do |end_pos|
-            dup_board = board.dup
-
-            dup_board.move_piece(pos, end_pos)
-
-            valid << end_pos unless dup_board.in_check?(color)
+            valid << end_pos unless move_into_check(end_pos)
         end
         
         valid
@@ -72,6 +68,14 @@ class Piece
 
     # if it's possible to check the other color, it prioritizes getting check
     def move_into_check?(end_pos)
-        
+        dup_board = board.dup
+
+        dup_board.move_piece(pos, end_pos)
+
+        if dup_board.in_check?(color)
+            true
+        else
+            false
+        end
     end
 end
