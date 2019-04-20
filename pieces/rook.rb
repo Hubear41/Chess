@@ -5,7 +5,7 @@ class Rook < Piece
     include Slidable
 
     def symbol
-        :Rook
+        "\u265C".encode('utf-8')
     end
 
     private

@@ -6,7 +6,7 @@ class Bishop < Piece
     include Slidable
 
     def symbol
-        :Bishop
+        "\u265D".encode('utf-8')
     end
 
     private

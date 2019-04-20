@@ -5,7 +5,7 @@ class Queen < Piece
     include Slidable
 
     def symbol
-        :Queen
+        "\u265B".encode('utf-8')
     end
 
     private 

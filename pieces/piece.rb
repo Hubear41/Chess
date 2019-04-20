@@ -63,12 +63,14 @@ class Piece
         raise "should define in subclass"
     end
 
+    # returns a dup of the current piece
     def dup
         self.class.new(color, board, pos)
     end
 
     private
 
+    # if it's possible to check the other color, it prioritizes getting check
     def move_into_check?(end_pos)
         
     end

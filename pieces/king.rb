@@ -16,7 +16,7 @@ class King < Piece
     ]  
 
     def symbol
-        :King
+        "\u265A".encode('utf-8')
     end
 
     def move_diffs

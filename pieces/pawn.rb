@@ -2,7 +2,7 @@ require_relative "piece.rb"
 require "byebug"
 class Pawn < Piece
     def symbol
-        :Pawn
+         "\u265F".encode('utf-8')
     end
 
     # inclues all steps and attacks

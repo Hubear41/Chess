@@ -67,37 +67,9 @@ class Display
     def find_val(pos)
         # checks color first and then find the matching symbol
         case board[pos].color 
-        when :white    # all white pieces
-            case board[pos].symbol
-            when :Rook
-                "\u2656".encode('utf-8')
-            when :Bishop
-                "\u2657".encode('utf-8')
-            when :Knight 
-                "\u2658".encode('utf-8')
-            when :Queen
-                "\u2655".encode('utf-8')
-            when :King
-                "\u2654".encode('utf-8')
-            when :Pawn
-                "\u2659".encode('utf-8')
-            end
-        when :black     # all black pieces
-            case board[pos].symbol
-            when :Rook
-                "\u265C".encode('utf-8')
-            when :Bishop
-                "\u265D".encode('utf-8')
-            when :Knight 
-                "\u265E".encode('utf-8')
-            when :Queen
-                "\u265B".encode('utf-8')
-            when :King
-                "\u265A".encode('utf-8')
-            when :Pawn
-                "\u265F".encode('utf-8')
-            end
-        when nil # for NullPieces 
+        when :white
+            board[pos].symbol.colorize(:white)
+
             " "      
         end
     end
