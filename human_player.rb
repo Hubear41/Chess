@@ -1,6 +1,6 @@
 require_relative "player.rb"
 
-class HumanPlayer << Player
+class HumanPlayer < Player
 
     def make_move
         cursor = display.cursor

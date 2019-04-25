@@ -31,13 +31,13 @@ MOVES = {
 }
 
 class Cursor
-
   attr_reader :cursor_pos, :board, :selected
 
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
     @board = board
     @selected = false
+    @selected_pos = nil
   end
 
   def get_input
@@ -78,6 +78,14 @@ class Cursor
 
   def toggle_selected
     @selected = !selected
+
+    # if selected
+    #   @selected_pos = cursor_pos
+    # else
+    #   @selected_pos = nil
+    # end
+
+    @selected_pos = selected ? cursor_pos : nil
   end
 
   # for :return and :space we select a position

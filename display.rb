@@ -1,6 +1,5 @@
 require 'colorize'
 require_relative 'cursor.rb'
-require_relative 'board.rb'
 
 class Display
     attr_reader :board
@@ -12,6 +11,13 @@ class Display
     end
 
     def render(cursor_pos)
+        selected_pos = @cursor_pos.selected_pos if @cursor.selected
+
+        if @cursor.selected && board[selected_pos].empty?
+            selected_piece = board[selected_pos] 
+            valid_moves = curr_piece.valid_moves
+        end
+        
         # Create column numbers
         (0..7).each do |num|
             print " "
@@ -34,6 +40,8 @@ class Display
                     print " [" + board[pos].symbol + "]".colorize(:red)
                 elsif [i, j] == cursor_pos && @cursor.selected == true
                     print " [" + board[pos].symbol + "]".colorize(:yellow)
+                elsif @cursor.selected && valid_moves.include?([i, j])
+                    print " [" + board[pos].symbol + "]".colorize(:green)
                 else
                     print " [" + board[pos].symbol + "]"
                 end
@@ -45,16 +53,4 @@ class Display
         puts "use arrow keys to move"
     end
 
-    # def find_val(pos)
-    #     # checks color first and then find the matching symbol
-    #     case board[pos].color 
-    #     when :white
-    #         board[pos].symbol.colorize(:white)
-    #         " "      
-    #     end
-    # end
-
 end
-
-test = Display.new(Board.new)
-test.move_cursor
